@@ -22,6 +22,10 @@ export default function Navbar() {
     navigate("/");
   };
 
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <nav style={{
       position: 'fixed',
@@ -60,6 +64,20 @@ export default function Navbar() {
             <span style={{ alignSelf: 'center', marginRight: '1rem' }}>
               Welcome, {user.name || user.email || 'User'}
             </span>
+            <button 
+              onClick={handleProfile}
+              style={{
+                padding: '0.5rem 1rem',
+                backgroundColor: '#6c757d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                marginRight: '0.5rem'
+              }}
+            >
+              Profile
+            </button>
             <button 
               onClick={handleAuthAction}
               style={{

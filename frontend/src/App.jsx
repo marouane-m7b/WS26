@@ -8,6 +8,7 @@ import UserPage from "./pages/user";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
 
           <Route element={<PrivateRoute allowedRoles={["user"]} />}>
             <Route path="/user" element={<UserPage />} />
+          </Route>
+
+          <Route element={<PrivateRoute allowedRoles={["admin", "moderator", "user"]} />}>
+            <Route path="/profile" element={<Profile />} />
           </Route>
 
           <Route
