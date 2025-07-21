@@ -7,6 +7,8 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\LoginThankYouMail;
 
 class AdminAuthController extends Controller
 {
@@ -35,6 +37,7 @@ class AdminAuthController extends Controller
             ], 422);
         }
 
+        Mail::to($admin->email)->send(new LoginThankYouMail());
         return response()->json([
             'token' => $admin->createToken('admin')->plainTextToken,
         ]);
