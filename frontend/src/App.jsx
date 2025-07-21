@@ -5,6 +5,7 @@ import PrivateRoute from "./router/PrivateRoute";
 import AdminPage from "./pages/admin";
 import ModPage from "./pages/mod";
 import UserPage from "./pages/user";
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<AdminPage />} />

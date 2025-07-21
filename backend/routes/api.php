@@ -39,6 +39,7 @@ Route::prefix('moderator')->group(function () {
 // User routes
 Route::prefix('user')->group(function () {
     Route::post('/login', [UserAuthController::class, 'login']);
+    Route::post('/register', [UserAuthController::class, 'register']);
     Route::middleware('auth:sanctum')->get('/profile', [UserAuthController::class, 'profile']);
     Route::middleware('auth:sanctum')->post('/logout', [UserAuthController::class, 'logout']);
 });

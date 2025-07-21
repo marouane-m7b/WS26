@@ -21,6 +21,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const handleRegister = async (formData) => {
+    try {
+      const { data } = await axiosClient.post("/user/register", formData);
+      localStorage.setItem("ud", JSON.stringify({ role: "user", _token: data.token }));
+      await getUser("user");
+      successToast("Inscription réussie");
+      navigate("/user");
+    } catch (err) {
+      errorToast("Erreur d'inscription");
+      setErrors(err.response?.data?.errors || {});
+    }
+  };
+
   const handleLogin = async (formData, role) => {
     try {
       const { data } = await axiosClient.post(`/${role}/login`, formData);
@@ -49,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <Context.Provider value={{ user, handleLogin, handleLogout, errors, loading }}>
+    <Context.Provider value={{ user, handleLogin, handleLogout, handleRegister, errors, loading }}>
       {children}
     </Context.Provider>
   );

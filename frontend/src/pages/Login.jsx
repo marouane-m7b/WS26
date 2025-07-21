@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../context/Context";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "", role: "admin" });
@@ -7,7 +8,10 @@ export default function Login() {
 
   const submit = async (e) => {
     e.preventDefault();
-    await handleLogin({ email: form.email, password: form.password }, form.role);
+    await handleLogin(
+      { email: form.email, password: form.password },
+      form.role
+    );
   };
 
   return (
@@ -36,6 +40,9 @@ export default function Login() {
       <button type="submit">Login</button>
       {errors.email && <p>{errors.email[0]}</p>}
       {errors.password && <p>{errors.password[0]}</p>}
+      <p>
+        Pas encore inscrit ? <Link to="/register">Créer un compte</Link>
+      </p>
     </form>
   );
 }
